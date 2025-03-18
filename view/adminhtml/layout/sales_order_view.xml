@@ -1,0 +1,27 @@
+<?xml version="1.0"?>
+<!-- 
+/**
+ * O2TI Change Order Shipping Method.
+ *
+ * Copyright © 2025 O2TI. All rights reserved.
+ *
+ * @author    Bruno Elisei <brunoelisei@o2ti.com>
+ * @license   See LICENSE for license details.
+ */
+ -->
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <body>
+        <referenceBlock name="sales_order_tabs">
+            <block class="O2TI\ChangeOrderShippingMethod\Block\Adminhtml\Order\View\Tab\ChangeShipping" name="sales_order_tab_change_shipping">
+                <arguments>
+                    <argument name="template" xsi:type="string">O2TI_ChangeOrderShippingMethod::order/view/change_shipping.phtml</argument>
+                    <argument name="title" xsi:type="string" translate="true">Alterar Método de Envio</argument>
+                </arguments>
+            </block>
+            <action method="addTab">
+                <argument name="name" xsi:type="string">change_shipping</argument>
+                <argument name="block" xsi:type="string">sales_order_tab_change_shipping</argument>
+            </action>
+        </referenceBlock>
+    </body>
+</page>

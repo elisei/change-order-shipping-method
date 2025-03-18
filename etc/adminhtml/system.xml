@@ -1,0 +1,57 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * O2TI Change Order Shipping Method.
+ *
+ * Copyright © 2025 O2TI. All rights reserved.
+ *
+ * @author    Bruno Elisei <brunoelisei@o2ti.com>
+ * @license   See LICENSE for license details.
+ */
+-->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Config:etc/system_file.xsd">
+    <system>
+        <tab id="o2ti" translate="label comment" sortOrder="100">
+            <label>O2TI</label>
+        </tab>
+        <section id="change_order_shipping" translate="label comment" sortOrder="1700" showInDefault="1" showInWebsite="1" showInStore="1">
+            <label>Change Order Shipping Method</label>
+            <tab>o2ti</tab>
+            <resource>O2TI_ChangeOrderShippingMethod::config</resource>
+            <group id="general" translate="label comment" type="text" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1">
+                <label>Change Order Shipping Method</label>
+                <comment>Configure options for changing shipping method on existing orders</comment>
+                <field id="enabled" translate="label comment" type="select" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1" canRestore="1">
+                    <label>Enabled</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                    <comment>Enable the ability to change shipping method on existing orders</comment>
+                </field>
+                <field id="allowed_statuses" translate="label comment" type="multiselect" sortOrder="20" showInDefault="1" showInWebsite="1" showInStore="1" canRestore="1">
+                    <label>Allowed Order Statuses</label>
+                    <source_model>O2TI\ChangeOrderShippingMethod\Model\Config\Source\FilterStatus</source_model>
+                    <comment>Select which order statuses allow changing the shipping method</comment>
+                    <depends>
+                        <field id="*/*/enabled">1</field>
+                    </depends>
+                </field>
+                <field id="add_comment" translate="label comment" type="select" sortOrder="30" showInDefault="1" showInWebsite="1" showInStore="1" canRestore="1">
+                    <label>Add Comment to Order</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                    <comment>Automatically add a comment to the order when shipping method is changed</comment>
+                    <depends>
+                        <field id="*/*/enabled">1</field>
+                    </depends>
+                </field>
+                <field id="notify_customer" translate="label comment" type="select" sortOrder="40" showInDefault="1" showInWebsite="1" showInStore="1" canRestore="1">
+                    <label>Notify Customer</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                    <comment>Notify customer when shipping method is changed</comment>
+                    <depends>
+                        <field id="*/*/enabled">1</field>
+                        <field id="*/*/add_comment">1</field>
+                    </depends>
+                </field>
+            </group>
+        </section>
+    </system>
+</config>

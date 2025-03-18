@@ -1,0 +1,53 @@
+<?php
+/**
+ * O2TI Change Order Shipping Method.
+ *
+ * Copyright © 2025 O2TI. All rights reserved.
+ *
+ * @author    Bruno Elisei <brunoelisei@o2ti.com>
+ * @license   See LICENSE for license details.
+ */
+
+/** @var \O2TI\ChangeOrderShippingMethod\Block\Adminhtml\Order\View\ChangeShipping $block */
+/** @var \Magento\Framework\Escaper $escaper */
+
+?>
+<div class="order-shipping-method-info">
+    <form action="<?= $block->getUrl('o2ti_changeordershippingmethod/order/changeShipping') ?>" method="post" id="shipping-method-form">
+        <?= $block->getBlockHtml('formkey') ?>
+        <input type="hidden" name="order_id" value="<?= $block->getOrderId() ?>">
+        
+        <fieldset class="admin__fieldset">
+            <div class="admin__field">
+                <label class="admin__field-label" for="shipping_method">
+                    <span><?= $block->escapeHtml(__('Novo Método de Envio')) ?></span>
+                </label>
+                <div class="admin__field-control">
+                    <select name="shipping_method" id="shipping_method" class="admin__control-select" required>
+                        <option value=""><?= $block->escapeHtml(__('-- Selecione o Método de Envio --')) ?></option>
+                        <?php foreach ($block->getShippingMethods() as $code => $method): ?>
+                        <option value="<?= $block->escapeHtmlAttr($code) ?>"><?= $block->escapeHtml($method) ?></option>
+                        <?php endforeach; ?>
+                    </select>
+                </div>
+            </div>
+            
+            <div class="admin__field">
+                <label class="admin__field-label" for="shipping_description">
+                    <span><?= $block->escapeHtml(__('Nova Descrição de Envio')) ?></span>
+                </label>
+                <div class="admin__field-control">
+                    <input type="text" name="shipping_description" id="shipping_description" class="admin__control-text" required>
+                </div>
+            </div>
+            
+            <div class="admin__field">
+                <div class="admin__field-control">
+                    <button class="action-primary" type="submit">
+                        <span><?= $block->escapeHtml(__('Alterar Método de Envio')) ?></span>
+                    </button>
+                </div>
+            </div>
+        </fieldset>
+    </form>
+</div>
