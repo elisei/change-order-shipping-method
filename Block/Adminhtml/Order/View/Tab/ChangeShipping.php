@@ -79,8 +79,7 @@ class ChangeShipping extends \O2TI\ChangeOrderShippingMethod\Block\Adminhtml\Ord
             return false;
         }
         
-        $refundedAmount = $order->getTotalRefunded();
-        return !$order->isCanceled() && ($refundedAmount <= 0);
+        return !$order->isCanceled();
     }
     
     /**
