@@ -79,7 +79,7 @@ class ChangeShipping extends \O2TI\ChangeOrderShippingMethod\Block\Adminhtml\Ord
             return false;
         }
         
-        return !$order->isCanceled();
+        return true;
     }
     
     /**
